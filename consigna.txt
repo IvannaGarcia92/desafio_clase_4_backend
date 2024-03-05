@@ -1,0 +1,38 @@
+Consigna:
+- Realizar una clase de nombre 'ProductManager', la cual permitirá trabajar con múltiples productos. Debe poder AGREGAR (CREATE), CONSULTAR (READ), MODIFICAR (UPDATE), y ELIMIANR (DELETE) un producto y manejarlo en persistencia de archivos, (basado en el desafío entregable de la clase 2).
+Aspectos a incluir: 
+    - La clase debe contar con una variable 'this.path', la cual se inicializará desde el constructor y debe recibir la ruta a trabajar desde el momento de generar su instancia.
+    - Debe guardar objetos con el siguiente formato: 
+        - id, (autoincrementable, ya realizado en el entregable anterior)
+        - title, 
+        - description, 
+        - price,
+        - thumbnail, 
+        - code,
+        - stock
+    - Debe tener un método 'addProduct()', el cual debe recibir un objeto con el formato previamente especificado, asignarle un id autoincrementable, y guardarlo en el array. 
+    - Debe tener un método 'getProducts()', el cual debe leer el archivo .json de productos y devolver todos los productos en formato de array. (.stringify())
+    - Debe tener un método 'getProductById()', el cual debe recibir un id, y tras leer el archivo, debe buscar el producto con el id especificado y devolverlo en formato objeto. (.parse())
+    - Debe tener un método 'updateProduct()', el cual debe recibir el id del producto a actualizar, así también como el campo a actualizar, (puede ser el objeto completo compo en una DB), y debe actualizarse el producto que coincida con ese id en el archivo. NO DEBE BORRARSE SU ID.
+    - Debe tener un método deleteProduct(), el cual debe recibir un id y debe eliminar el producto que tenga ese id en el archivo.
+- Formato de entregable: archivo con el nombre 'ProductManager.js'.
+
+Proceso de testing:
+1- Se creará una instancia de la clase 'ProductManager'.
+2- Se llamará al método 'getProducts' recién creada la instancia, debe devolver un arreglo vacío [].
+3- Se llamará al método 'addProduct' con los campos:
+        -title: 'producto prueba',
+        -description: 'Este es un producto prueba',
+        -price: 200,
+        -thumbnail: 'Sin imagen',
+        -code: 'abc123',
+        -stock:25
+4- El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE.
+5- Se llamará el método 'getProducts' nuevamente, esta vez debe aparecer los productos agregados.
+6- Se llamará al método 'getProductById' y se corroborará que devuelva el producto con el id especificado, en caso de no existir, debe arrojar un error.
+7- Se llamará al método 'updateProduct' y se intentará cambiar un campo de algún producto, se evaluará que no se elimine el id y que sí se haya hecho la actualización.
+8- Se llamará al método 'deleteProduct', se evaluará que realmente se elimine el producto o que arroje un error en caso de no existir.
+
+
+
+
