@@ -6,6 +6,7 @@ class ProductManager {
         this.path = jsonFilePath;
     }
 
+    // reset
     async resetProductsFile() {
         try {
             await fs.writeFile(this.path, '[]'); // escribimos un arreglo vacío en el archivo JSON para reiniciar los productos
@@ -145,8 +146,9 @@ class ProductManager {
 
             // Paso 5: intentamos actualizar un campo del producto
             console.log("\nPaso 5: Intentamos actualizar un campo del producto:");
-            await this.updateProducts(productId, { price: 250 }); // Cambiamos el precio del producto
+            await this.updateProducts(productId, { title: "UPDATED PRODUCT" }); // Cambiamos el precio del producto
             console.log("Producto actualizado correctamente.");
+            console.log(await this.getProducts());
 
             // Paso 6: intentamos eliminar el producto
             console.log("\nPaso 6: Intentamos eliminar el producto:");
@@ -162,13 +164,10 @@ class ProductManager {
     }
 }
 
-// Ejecutamos las pruebas
-//const productManager = new ProductManager('./products.json');
-//productManager.runTests();
-
-(async () => {
-    const productManager = new ProductManager('./products.json');
-    await productManager.resetProductsFile(); // Reiniciamos el archivo antes de ejecutar las pruebas
-    await productManager.runTests();
-})();
+// funcion asíncrona autoinvocada
+(async () => { //definimos una función flecha asíncrona 
+    const productManager = new ProductManager('./products.json'); // se crea una instancia de 'ProductManager' con un archivo JSON de productos como argumento 
+    await productManager.resetProductsFile(); // reiniciamos el archivo antes de ejecutar las pruebas
+    await productManager.runTests(); // ejecutamos las pruebas (testing)
+})(); // la función asíncrona se invoca inmediatamente utilizando () al final del bloque de código, esto asegura que el código dentro de la función sea ejecutado tan pronto como el script se ejecute
 
